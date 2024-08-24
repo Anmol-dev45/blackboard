@@ -1,0 +1,52 @@
+:root {
+  --thumb-size: 16px;
+  --track: #979797;
+  --track-bg: #ffffff;
+}
+input[type="range"] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  border-radius: 15px;
+  /*  overflow: hidden;  remove this line*/
+
+  /* New additions */
+  height: 8px;
+  background: var(--track-bg);
+}
+
+/* Thumb: webkit */
+input[type="range"]::-webkit-slider-thumb {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  height: 15px;
+  width: 15px;
+  background-color: var(--track);
+  border-radius: 50%;
+  border: none;
+
+  /* box-shadow: -407px 0 0 400px #f50; emove this line */
+}
+
+/* Thumb: Firefox */
+input[type="range"]::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: var(--track);
+  border-radius: 50%;
+  border: none;
+
+  /* box-shadow: -407px 0 0 400px #f50; emove this line */
+}
+
+/* Hover, active & focus Thumb: Webkit */
+
+/*=============
+Aesthetics 
+=========================*/
