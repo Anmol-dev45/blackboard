@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import CanvasDraw from "react-canvas-draw";
 import { DEFAULT_ERASER_COLOR } from "../../constants";
+import { useBoards } from "../../context/boards";
 
-const Blackboard = ({
-  color,
-  brushRadius,
-  isErasing,
-  currentBoard,
-  boards,
-  setBoards,
-}) => {
+const Blackboard = () => {
+  const { color, brushRadius, isErasing, currentBoard, boards, setBoards } =
+    useBoards();
   const ref = useRef();
 
   const saveCanvasData = () => {

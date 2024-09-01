@@ -1,6 +1,8 @@
 import React from "react";
 import "./ColorPicker.css";
-const ColorPicker = ({ isErasing, color, setColor }) => {
+import { useBoards } from "../../context/boards";
+const ColorPicker = () => {
+  const { isErasing, setColor, color } = useBoards();
   return (
     <input
       type="color"
