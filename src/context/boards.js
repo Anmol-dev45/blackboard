@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { DEFAULT_BRUSH_RADIUS, DEFAULT_PEN_COLOR } from "../constants";
 
 export const BoardsContext = createContext({
+  canvasRef: null,
   boards: [null],
   currentBoard: 0,
   isErasing: false,

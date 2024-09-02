@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Blackboard from "./components/BlackBoard/BlackBoard";
 import { DEFAULT_BRUSH_RADIUS, DEFAULT_PEN_COLOR } from "./constants";
 
@@ -7,6 +7,7 @@ import Toolbar from "./components/Toolbar";
 import Pagination from "./components/Pagination";
 
 function App() {
+  const canvasRef = useRef(null);
   const [color, setColor] = useState(DEFAULT_PEN_COLOR);
   const [brushRadius, setBrushRadius] = useState(DEFAULT_BRUSH_RADIUS);
   const [isErasing, setIsErasing] = useState(false);
@@ -16,6 +17,7 @@ function App() {
   return (
     <BoardsContext.Provider
       value={{
+        canvasRef,
         boards,
         brushRadius,
         color,

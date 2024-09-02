@@ -1,16 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import CanvasDraw from "react-canvas-draw";
+import React, { useEffect } from "react";
+import CustomCanvasDraw from "./CustomCanvasDraw"; // Use your new component
 import { DEFAULT_ERASER_COLOR } from "../../constants";
 import { useBoards } from "../../context/boards";
 
 const Blackboard = () => {
-  const { color, brushRadius, isErasing, currentBoard, boards, setBoards } =
-    useBoards();
-  const ref = useRef();
+  const {
+    canvasRef,
+    color,
+    brushRadius,
+    isErasing,
+    currentBoard,
+    boards,
+    setBoards,
+  } = useBoards();
 
   const saveCanvasData = () => {
-    if (ref.current) {
-      const canvasData = ref.current.getSaveData();
+    if (canvasRef.current) {
+      const canvasData = canvasRef.current.getSaveData();
       setBoards((prev) => {
         const updatedBoards = [...prev];
         updatedBoards[currentBoard] = canvasData; // Save data to the correct board
@@ -20,14 +26,14 @@ const Blackboard = () => {
   };
 
   const loadCanvasData = () => {
-    if (ref.current && boards[currentBoard]) {
-      ref.current.loadSaveData(boards[currentBoard], true);
+    if (canvasRef.current && boards[currentBoard]) {
+      canvasRef.current.loadSaveData(boards[currentBoard], true);
     }
   };
 
   // Create a new board if it doesn't exist when switching to a new board
   useEffect(() => {
-    ref.current.clear();
+    canvasRef.current.clear();
     if (currentBoard + 1 > boards.length) {
       setBoards((prev) => [...prev, null]);
     } else {
@@ -43,16 +49,18 @@ const Blackboard = () => {
   }, [currentBoard]);
 
   return (
-    <CanvasDraw
-      ref={ref}
-      brushColor={isErasing ? DEFAULT_ERASER_COLOR : color}
-      brushRadius={Number(brushRadius)}
-      canvasWidth={window.innerWidth}
-      canvasHeight={window.innerHeight}
-      hideGrid={true}
-      backgroundColor={DEFAULT_ERASER_COLOR}
-      eraseMode={isErasing} // Enables erasing mode
-    />
+    <>
+      <CustomCanvasDraw
+        ref={canvasRef}
+        brushColor={isErasing ? DEFAULT_ERASER_COLOR : color}
+        brushRadius={Number(brushRadius)}
+        canvasWidth={window.innerWidth}
+        canvasHeight={window.innerHeight}
+        hideGrid={true}
+        backgroundColor={DEFAULT_ERASER_COLOR}
+        eraseMode={isErasing} // Enables erasing mode
+      />
+    </>
   );
 };
 
