@@ -20,7 +20,8 @@ const Range = () => {
 
   useEffect(() => {
     const progress =
-      ((value - ref.current.min) / (ref.current.max - ref.current.min)) * 100;
+      ((brushRadius - ref.current.min) / (ref.current.max - ref.current.min)) *
+      100;
     ref.current.style.background = `linear-gradient(to right, #979797 ${progress}%, #ffffff ${progress}%)`;
   }, [brushRadius]);
 
