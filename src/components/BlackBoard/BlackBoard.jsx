@@ -10,7 +10,6 @@ const Blackboard = () => {
 
   const saveCanvasData = () => {
     if (ref.current) {
-      console.log("saved");
       const canvasData = ref.current.getSaveData();
       setBoards((prev) => {
         const updatedBoards = [...prev];
@@ -22,14 +21,12 @@ const Blackboard = () => {
 
   const loadCanvasData = () => {
     if (ref.current && boards[currentBoard]) {
-      console.log("load");
       ref.current.loadSaveData(boards[currentBoard], true);
     }
   };
 
   // Create a new board if it doesn't exist when switching to a new board
   useEffect(() => {
-    console.log(boards);
     ref.current.clear();
     if (currentBoard + 1 > boards.length) {
       setBoards((prev) => [...prev, null]);
@@ -40,7 +37,6 @@ const Blackboard = () => {
 
   // Save the canvas data before the component unmounts or board changes
   useEffect(() => {
-    console.log(ref);
     return () => {
       saveCanvasData();
     };
