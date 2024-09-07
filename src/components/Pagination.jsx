@@ -1,26 +1,24 @@
-import React from "react";
 import { useBoards } from "../context/boards";
-
+import Button from "./Button";
+import { MoveLeft, MoveRight } from "lucide-react";
 const Pagination = () => {
   const { currentBoard, setCurrentBoard } = useBoards();
   return (
-    <div className="flex items-center gap-6 text-3xl text-white">
-      <button
+    <div className="flex items-center gap-8 text-3xl text-white">
+      <Button
+        Icon={MoveLeft}
         onClick={() => {
           setCurrentBoard((prev) => Math.max(prev - 1, 0));
         }}
         disabled={currentBoard === 0}
-      >
-        ←
-      </button>
-      <span>{currentBoard + 1}</span>
-      <button
+      />
+      <span className="font-semibold font-mono">{currentBoard + 1}</span>
+      <Button
+        Icon={MoveRight}
         onClick={() => {
           setCurrentBoard((prev) => prev + 1);
         }}
-      >
-        →
-      </button>
+      />
     </div>
   );
 };

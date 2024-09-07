@@ -1,6 +1,6 @@
-import React from "react";
 import { useBoards } from "../../context/boards";
 import { ShieldMinus } from "lucide-react";
+import Button from "../Button";
 const Clear = () => {
   const { canvasRef, currentBoard, setBoards } = useBoards();
   const clearBoard = () => {
@@ -11,14 +11,7 @@ const Clear = () => {
       return updatedBoards;
     });
   };
-  return (
-    <button
-      className="p-2 bg-gray-800 text-white rounded-md"
-      onClick={clearBoard}
-    >
-      <ShieldMinus />
-    </button>
-  );
+  return <Button onClick={clearBoard} Icon={ShieldMinus} />;
 };
 
 export default Clear;
